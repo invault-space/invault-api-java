@@ -21,5 +21,6 @@ public class OpenEntity {
    /**
     * 运行环境域名
     */
+   //private String URL = "http://127.0.0.1:8084/open/api/v1";
    private String URL = "http://10.0.152.131:8084/open/api/v1";
 }

@@ -4,9 +4,8 @@ import com.alibaba.fastjson.JSON;
 import encry.entity.OpenEntity;
 import encry.entity.OpenResult;
 import encry.entity.RPCResult;
-import encry.entity.vo.AssetCodeVo;
-import encry.entity.vo.CoinCodePageVo;
-import encry.entity.vo.CoinCodeVo;
+import encry.entity.vo.*;
+import encry.service.AddressService;
 import encry.service.QueryAssetService;
 import encry.utils.HttpClientUtil;
 import encry.utils.SignUtils;
@@ -17,29 +16,16 @@ import encry.utils.SignUtils;
  * @Date 2021/11/8 15:04
  * @Description
  */
-public class QueryAssetServiceImpl implements QueryAssetService {
-
-    @Override
-    public OpenResult queryAssets(OpenEntity entity) {
-        // 符合JSON-RPC 2.0 ， queryAssetList为每个接口的method
-        RPCResult rpcResult = RPCResult.placeDate("queryAssets",null);
-        // 转化为json字符串
-        String data = JSON.toJSONString(rpcResult);
-        String sign = SignUtils.sign(entity.getPrivateKey(),data);
-        String context = HttpClientUtil.doPostJson(entity.getKeyStr(),sign,entity.getURL(),data);
-        return JSON.parseObject(context,OpenResult.class);
-    }
-
+public class AddressServiceImpl implements AddressService {
     /**
-     * 查询钱包下指定资产详情
-     *
+     * 查询币种地址总表
      * @param openEntity
-     * @param assetCodeVo
+     * @param coinCodePageVo
      * @return
      */
     @Override
-    public OpenResult queryAssetByCode(OpenEntity openEntity, AssetCodeVo assetCodeVo) {
-        RPCResult rpcResult = RPCResult.placeDate("queryAssetByCode",assetCodeVo);
+    public OpenResult queryAddressesByCoinCode(OpenEntity openEntity, CoinCodePageVo coinCodePageVo) {
+        RPCResult rpcResult = RPCResult.placeDate("queryAddressesByCoinCode",coinCodePageVo);
         String data = JSON.toJSONString(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
@@ -48,36 +34,50 @@ public class QueryAssetServiceImpl implements QueryAssetService {
     }
 
     /**
-     * 查询钱包下币种
+     * 批量校验地址信息
      *
      * @param openEntity
+     * @param verifyAddressBatchVo
      * @return
      */
     @Override
-    public OpenResult queryCoins(OpenEntity openEntity) {
-        RPCResult rpcResult = RPCResult.placeDate("queryCoins",null);
+    public OpenResult queryAddressesInfo(OpenEntity openEntity, VerifyAddressBatchVo verifyAddressBatchVo) {
+        RPCResult rpcResult = RPCResult.placeDate("queryAddressesInfo",verifyAddressBatchVo);
         String data = JSON.toJSONString(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
-
     }
 
     /**
-     * 查询钱包下指定币种详情
+     * 验证地址合法性
      *
      * @param openEntity
-     * @param coinCodeVo
+     * @param verifyAddressVo
      * @return
      */
     @Override
-    public OpenResult queryCoinByCode(OpenEntity openEntity, CoinCodeVo coinCodeVo) {
-        RPCResult rpcResult = RPCResult.placeDate("queryCoinByCode",coinCodeVo);
+    public OpenResult checkAddress(OpenEntity openEntity, VerifyAddressVo verifyAddressVo) {
+        RPCResult rpcResult = RPCResult.placeDate("checkAddress",verifyAddressVo);
         String data = JSON.toJSONString(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
-
     }
 
+    /**
+     * 获取充值地址
+     *
+     * @param openEntity
+     * @param depositAddressVo
+     * @return
+     */
+    @Override
+    public OpenResult getDepositAddress(OpenEntity openEntity, DepositAddressVo depositAddressVo ) {
+        RPCResult rpcResult = RPCResult.placeDate("getDepositAddress",depositAddressVo);
+        String data = JSON.toJSONString(rpcResult);
+        String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
+        String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
+        return JSON.parseObject(context,OpenResult.class);
+    }
 }
