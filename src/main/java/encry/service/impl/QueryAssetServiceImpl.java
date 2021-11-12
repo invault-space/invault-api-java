@@ -3,13 +3,19 @@ package encry.service.impl;
 import com.alibaba.fastjson.JSON;
 import encry.entity.OpenEntity;
 import encry.entity.OpenResult;
+import encry.entity.OpenResultError;
 import encry.entity.RPCResult;
+import encry.entity.enums.ResultCode;
 import encry.entity.vo.AssetCodeVo;
 import encry.entity.vo.CoinCodePageVo;
 import encry.entity.vo.CoinCodeVo;
 import encry.service.QueryAssetService;
 import encry.utils.HttpClientUtil;
 import encry.utils.SignUtils;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Objects;
 
 /**
  * @author zc
@@ -39,6 +45,10 @@ public class QueryAssetServiceImpl implements QueryAssetService {
      */
     @Override
     public OpenResult queryAssetByCode(OpenEntity openEntity, AssetCodeVo assetCodeVo) {
+        if(Objects.isNull(assetCodeVo) || StringUtils.isBlank(assetCodeVo.getAssetCode())){
+            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+        }
+
         RPCResult rpcResult = RPCResult.placeDate("queryAssetByCode",assetCodeVo);
         String data = JSON.toJSONString(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
@@ -72,6 +82,9 @@ public class QueryAssetServiceImpl implements QueryAssetService {
      */
     @Override
     public OpenResult queryCoinByCode(OpenEntity openEntity, CoinCodeVo coinCodeVo) {
+        if(Objects.isNull(coinCodeVo) || StringUtils.isBlank(coinCodeVo.getCoinCode())){
+            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+        }
         RPCResult rpcResult = RPCResult.placeDate("queryCoinByCode",coinCodeVo);
         String data = JSON.toJSONString(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);

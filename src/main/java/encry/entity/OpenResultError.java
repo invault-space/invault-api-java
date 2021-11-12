@@ -1,5 +1,7 @@
 package encry.entity;
 
+import encry.entity.enums.ResultCode;
+
 import java.io.Serializable;
 
 /**
@@ -19,6 +21,9 @@ public class OpenResultError<T> implements Serializable {
     public OpenResultError(String code, String message) {
         this.code = code;
         this.message = message;
+    }
+
+    public OpenResultError(ResultCode openAssetCode) {
     }
 
     public String getCode() {

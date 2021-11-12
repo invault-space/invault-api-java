@@ -73,7 +73,7 @@ public class RequestDemo {
 //        verifyAddressVov.setAddress("DFZZkycAygmoFei1yR46fiGrtwrwUNBJMz");
 //        verifyAddressVov.setMemo("1023809976");
 //        result = addressService.checkAddress(new OpenEntity(),verifyAddressVov);
-//        System.out.println("6666======checkAddress======================================");
+//        System.out.println("7777======checkAddress======================================");
 //        System.out.println(JSON.toJSONString(result) + "\n\n");
 //
 //
@@ -82,22 +82,77 @@ public class RequestDemo {
 //        depositAddressVo.setCoinCode("DOGE");
 //        depositAddressVo.setLimit(5);
 //        result = addressService.getDepositAddress(new OpenEntity(),depositAddressVo);
-//        System.out.println("6666======checkAddress======================================");
+//        System.out.println("8888======checkAddress======================================");
 //        System.out.println(JSON.toJSONString(result) + "\n\n");
 //
 
 
-        WithdrawApplyVo withdrawApplyVo = new WithdrawApplyVo();
-        withdrawApplyVo.setRequestOrderId("Order-XX896786");
-        withdrawApplyVo.setCoinCode("ETH");
-        withdrawApplyVo.setAddress("0x8994190AD3CCf2A32b2ba05afA68670061BE5845");
-        withdrawApplyVo.setMemo("");
-        withdrawApplyVo.setAmount("0.1");
-        withdrawApplyVo.setTimestamp(System.currentTimeMillis());
-        result = tradeService.withdrawApply(new OpenEntity(),withdrawApplyVo);
-        System.out.println("6666======checkAddress======================================");
+//        WithdrawApplyVo withdrawApplyVo = new WithdrawApplyVo();
+//        withdrawApplyVo.setRequestOrderId("Order-XX896786");
+//        withdrawApplyVo.setCoinCode("ETH");
+//        withdrawApplyVo.setAddress("0x8994190AD3CCf2A32b2ba05afA68670061BE5845");
+//        withdrawApplyVo.setMemo("");
+//        withdrawApplyVo.setAmount("0.1");
+//        withdrawApplyVo.setTimestamp(System.currentTimeMillis());
+//        result = tradeService.withdrawApply(new OpenEntity(),withdrawApplyVo);
+//        System.out.println("9999======checkAddress======================================");
+//        System.out.println(JSON.toJSONString(result) + "\n\n");
+//
+//
+//        result = tradeService.queryByReqOrderId(new OpenEntity(), new QryByReqOrderIdVo("Order-XX896786"));
+//        System.out.println("10  10 ======queryByReqOrderId======================================");
+//        System.out.println(JSON.toJSONString(result) + "\n\n");
+//
+//
+//        QryTradeListByDateVo vo = QryTradeListByDateVo.builder()
+//                .orderType("deposit")
+//                .coinCode("ETH")
+//                .build();
+//        result = tradeService.transactions(new OpenEntity(), vo);
+//        System.out.println("v1  v1 ======transactions======================================");
+//        System.out.println(JSON.toJSONString(result) + "\n\n");
+//    }
+//
+//
+//
+//
+//        result = tradeService.transactionById(new OpenEntity(), new QryTradeByOrderNoVo("O1451079599671738368","deposit"));
+//        System.out.println("12  ======transactionById======================================");
+//        System.out.println(JSON.toJSONString(result) + "\n\n");
+//
+
+
+//        QryTradeListByDateVo vo = QryTradeListByDateVo.builder()
+//                .orderType("deposit")
+//                .coinCode("ETH")
+//                .build();
+//        result = tradeService.pendingTransactions(new OpenEntity(),vo);
+//        System.out.println("13  ======pendingTransactions======================================");
+//        System.out.println(JSON.toJSONString(result) + "\n\n");
+//
+//
+//
+//
+//
+//        result = tradeService.pendingTransactionById(new OpenEntity(), new QryTradeByOrderNoVo("O1425046202105200640","deposit"));
+//        System.out.println("14  ======transactionById======================================");
+//        System.out.println(JSON.toJSONString(result) + "\n\n");
+//
+//
+//
+//        result = tradeService.transactionByTxHash(new OpenEntity(), new TradeByTxHashVo("ETH","0x72d68d09a4804d88f683cfaff4fa8095433875793d5b80cef0da869ab886aeae"));
+//        System.out.println("15  ======transactionByTxHash======================================");
+//        System.out.println(JSON.toJSONString(result) + "\n\n");
+
+
+        result = tradeService.blockHeight(new OpenEntity(), new BlockHeightVo());
+        System.out.println("16  ======transactionByBlockHeight======================================");
         System.out.println(JSON.toJSONString(result) + "\n\n");
 
+
+        result = tradeService.transactionByBlockHeight(new OpenEntity(), new TradeByBlockHeightVo("USDT_ERC20","11410695"));
+        System.out.println("17  ======transactionByBlockHeight======================================");
+        System.out.println(JSON.toJSONString(result) + "\n\n");
     }
 
 }
