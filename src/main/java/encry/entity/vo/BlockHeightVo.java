@@ -15,6 +15,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BlockHeightVo {
-    // 币种
     private String chainCoin;
 }

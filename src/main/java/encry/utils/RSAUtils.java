@@ -19,40 +19,42 @@ import java.util.Map;
  * @Description
  */
 public class RSAUtils {
-   // 密码长度
+   // Password length
    private static final int RSA_KEY_SIZE = 2048;
-   // 算法名称
+   // Algorithm name
    private static final String KEY_ALGORITHM = "RSA";
-   // 编码格式
+   // Encoding format
    private static final String CODE_UTF8 = "UTF-8";
-   // 最大加密字符长度
+   // Maximum encryption character length
    private static final Integer MAX_ENCRYPT_BLOCK = 245;
-   // 最大解密字符长度
+   // Maximum decrypted character length
    private static final Integer MAX_DECRYPT_BLOCK = 256;
 
    /**
-    * 随机生成密钥对
+    *
+    * Randomly generate a key pair
     *
     * @throws NoSuchAlgorithmException
     */
    public static Map<String, String> genKeyPair(){
-      // KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象
+      // The KeyPairGenerator class is used to generate public and private key pairs, and objects are generated based on the RSA algorithm
       KeyPairGenerator keyPairGen = null;
       try {
          keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
       } catch (NoSuchAlgorithmException e) {
          e.printStackTrace();
       }
-      // 初始化密钥对生成器
+      //
+      // Initialize the key pair generator
       keyPairGen.initialize(RSA_KEY_SIZE, new SecureRandom());
-      // 生成一个密钥对，保存在keyPair中
+      // Generate a key pair and save it in keyPair
       KeyPair keyPair = keyPairGen.generateKeyPair();
-      // 得到公私钥
+      // Get public and private keys
       RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
       RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
-      // 得到公钥
+      // Get the public key
       String publicKeyString = new String(Base64.encodeBase64(publicKey.getEncoded()));
-      // 得到私钥字符串
+      // Get the private key string
       String privateKeyString = new String(Base64.encodeBase64((privateKey.getEncoded())));
       Map<String,String> keyMap = new HashMap<>();
       keyMap.put("publicKey",publicKeyString);
@@ -61,19 +63,21 @@ public class RSAUtils {
    }
 
    /**
-    * RSA公钥加密
+    * RSA public key encryption
     *
-    * @param str       加密字符串
-    * @param publicKey 公钥
-    * @return 密文
-    * @throws Exception 加密过程中的异常信息
+    * @param str
+    * Encrypted string
+    * @param publicKey
+    * Public key
+    * @return Ciphertext
+    * @throws Exception Abnormal information during encryption
     */
    public static String encrypt(String str, String publicKey){
       try {
-         // base64编码的公钥
+         // base64 encoded public key
          byte[] decoded = Base64.decodeBase64(publicKey);
          RSAPublicKey pubKey = (RSAPublicKey) KeyFactory.getInstance(KEY_ALGORITHM).generatePublic(new X509EncodedKeySpec(decoded));
-         // RSA加密
+         // RSA encryption
          Cipher cipher = Cipher.getInstance(KEY_ALGORITHM);
          cipher.init(Cipher.ENCRYPT_MODE, pubKey);
          String outStr = Base64.encodeBase64String(doCrypt(str.getBytes(CODE_UTF8),cipher,MAX_ENCRYPT_BLOCK));
@@ -84,21 +88,22 @@ public class RSAUtils {
    }
 
    /**
-    * RSA私钥解密
+    * RSA private key decryption
     *
-    * @param str        加密字符串
-    * @param privateKey 私钥
-    * @return 铭文
+    * @param str        Encrypted string
+    * @param privateKey
+    * Private key
+    * @return Inscription
     * @throws
     */
    public static String decrypt(String str, String privateKey){
       try {
-         // 64位解码加密后的字符串
+         // 64-bit decoded encrypted string
          byte[] inputByte = Base64.decodeBase64(str.getBytes(CODE_UTF8));
-         // base64编码的私钥
+         // base64 encoded private key
          byte[] decoded = Base64.decodeBase64(privateKey);
          RSAPrivateKey priKey = (RSAPrivateKey) KeyFactory.getInstance(KEY_ALGORITHM).generatePrivate(new PKCS8EncodedKeySpec(decoded));
-         // RSA解密
+         //RSA decryption
          Cipher cipher = Cipher.getInstance(KEY_ALGORITHM);
          cipher.init(Cipher.DECRYPT_MODE, priKey);
          String outStr = new String(doCrypt(inputByte,cipher,MAX_DECRYPT_BLOCK));
@@ -109,10 +114,12 @@ public class RSAUtils {
    }
 
    /**
-    * 私钥加密
+    * Private key encryption
     *
-    * @param data       加密数据
-    * @param privateKey 私钥
+    * @param data
+    * Encrypted data
+    * @param privateKey
+    * Private key
     * @return
     */
    public static String encryptByPrivateKey(String data, String privateKey) {
@@ -132,10 +139,10 @@ public class RSAUtils {
    }
 
    /**
-    * 公钥解密
+    * Public key decryption
     *
-    * @param data      解密数据
-    * @param publicKey 公钥
+    * @param data      Decrypt data
+    * @param publicKey Public key
     * @return
     */
    public static String decryptByPublicKey(String data, String publicKey) {
@@ -157,15 +164,15 @@ public class RSAUtils {
    /**
     * 分段加解密
     *
-    * @param data     要加解密的内容数组
-    * @param cipher   加解密对象
-    * @param maxBlock 分段大小
-    * @return 结果
+    * @param data     Segment encryption and decryption
+    * @param cipher   Encryption and decryption objects
+    * @param maxBlock Segment size
+    * @return result
     */
    private static byte[] doCrypt(byte[] data, Cipher cipher, Integer maxBlock) {
       try {
          int inputLength = data.length;
-         // 标识
+         // Logo
          int offSet = 0;
          byte[] resultBytes = {};
          byte[] cache;

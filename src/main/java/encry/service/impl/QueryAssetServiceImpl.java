@@ -27,9 +27,7 @@ public class QueryAssetServiceImpl implements QueryAssetService {
 
     @Override
     public OpenResult queryAssets(OpenEntity entity) {
-        // 符合JSON-RPC 2.0 ， queryAssetList为每个接口的method
         RPCResult rpcResult = RPCResult.placeDate("queryAssets",null);
-        // 转化为json字符串
         String data = JSON.toJSONString(rpcResult);
         String sign = SignUtils.sign(entity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(entity.getKeyStr(),sign,entity.getURL(),data);
@@ -37,7 +35,7 @@ public class QueryAssetServiceImpl implements QueryAssetService {
     }
 
     /**
-     * 查询钱包下指定资产详情
+     * Query the details of the specified assets under the wallet
      *
      * @param openEntity
      * @param assetCodeVo
@@ -58,7 +56,8 @@ public class QueryAssetServiceImpl implements QueryAssetService {
     }
 
     /**
-     * 查询钱包下币种
+     *
+     * Check the currency of the wallet
      *
      * @param openEntity
      * @return
@@ -74,7 +73,7 @@ public class QueryAssetServiceImpl implements QueryAssetService {
     }
 
     /**
-     * 查询钱包下指定币种详情
+     * Query the details of the specified currency under the wallet
      *
      * @param openEntity
      * @param coinCodeVo

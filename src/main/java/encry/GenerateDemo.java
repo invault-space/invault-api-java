@@ -7,17 +7,17 @@ import java.util.Map;
  * @Classname demo
  * @Date 2021/8/27 10:19
  * @Created by chenrujia
- * @Description 生成公私密钥对demo
+ * @Description Generate public and private key pair demo
  */
 public class GenerateDemo {
     public static void main(String[] args) {
-        // 1.生成公私密钥对,仅生成一次即可
+        // 1.Generate a public-private key pair, just generate it once
         Map<String,String> keyMap = RSAUtils.genKeyPair();
-        // 获取私钥，用于加密信息
+        // Obtain the private key, which is used to encrypt information
         String privateKey = keyMap.get("privateKey");
-        System.out.println("随机生成的私钥为:" + privateKey);
-        // 获取公钥，用于平台绑定
+        System.out.println("The randomly generated private key is:" + privateKey);
+        // Obtain the public key for platform binding
         String publicKey = keyMap.get("publicKey");
-        System.out.println("随机生成的公钥为:" + publicKey);
+        System.out.println("The randomly generated public key is:" + publicKey);
     }
 }

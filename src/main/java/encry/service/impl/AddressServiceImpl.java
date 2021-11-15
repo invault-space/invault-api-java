@@ -23,7 +23,7 @@ import java.util.Objects;
  */
 public class AddressServiceImpl implements AddressService {
     /**
-     * 查询币种地址总表
+     * Query the currency address summary table
      * @param openEntity
      * @param coinCodePageVo
      * @return
@@ -42,7 +42,8 @@ public class AddressServiceImpl implements AddressService {
     }
 
     /**
-     * 批量校验地址信息
+     *
+     * Batch verification of address information
      *
      * @param openEntity
      * @param verifyAddressBatchVo
@@ -61,7 +62,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     /**
-     * 验证地址合法性
+     * Verify address legitimacy
      *
      * @param openEntity
      * @param verifyAddressVo
@@ -80,7 +81,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     /**
-     * 获取充值地址
+     * Get the top-up address
      *
      * @param openEntity
      * @param depositAddressVo

@@ -17,7 +17,7 @@ public interface QueryAssetService {
 
 
     /**
-     * 查询钱包下指定资产详情
+     * Query the details of the specified assets under the wallet
      * @param openEntity
      * @param assetCodeVo
      * @return
@@ -25,7 +25,7 @@ public interface QueryAssetService {
     OpenResult queryAssetByCode(OpenEntity openEntity , AssetCodeVo assetCodeVo);
 
     /**
-     * 查询钱包下币种
+     * Check the currency of the wallet
      * @param openEntity
      * @return
      */
@@ -33,13 +33,12 @@ public interface QueryAssetService {
 
 
     /**
-     * 查询钱包下指定币种详情
+     *
+     * Query the details of the specified currency under the wallet
      * @param openEntity
      * @param coinCodeVo
      * @return
      */
     OpenResult queryCoinByCode(OpenEntity openEntity, CoinCodeVo coinCodeVo );
-
-
 
 }

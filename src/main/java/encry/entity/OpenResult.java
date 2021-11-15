@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @Classname OpenResult
  * @Date 2021/9/3 16:41
  * @Created by chenrujia
- * @Description oepnapi返回参数
+ * @Description
  */
 public class OpenResult<T> implements Serializable {
     private String jsonrpc;

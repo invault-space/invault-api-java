@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Map;
 
-
-
 /**
  * @Classname HttpClientUtil
  * @Date 2021/11/9 10:22
@@ -31,12 +29,12 @@ public class HttpClientUtil {
     * @return
     */
    public static String doGet(String url, Map<String, String> param) {
-     // 创建Httpclient对象
+     // Create Httpclient object
      CloseableHttpClient httpClient = (CloseableHttpClient) SkipHttpsUtil.wrapClient();
      String resultString = "";
      CloseableHttpResponse response = null;
      try {
-      // 创建uri
+      // Create uri
       URIBuilder builder = new URIBuilder(url);
       if (param != null) {
        for (String key : param.keySet()) {
@@ -44,9 +42,9 @@ public class HttpClientUtil {
        }
       }
       URI uri = builder.build();
-      // 创建http GET请求
+      // Create http GET request
       HttpGet httpGet = new HttpGet(uri);
-      // 执行请求
+      // Execute request
       response = httpClient.execute(httpGet);
       resultString = EntityUtils.toString(response.getEntity(), CODE_FORMAT);
      } catch (Exception e) {
@@ -69,21 +67,21 @@ public class HttpClientUtil {
     * @return
     */
    public static String doPostJson(String keyStr,String sign,String url,String json){
-       // 创建Httpclient对象
+       // Create Httpclient object
        CloseableHttpClient httpClient = (CloseableHttpClient) SkipHttpsUtil.wrapClient();
        CloseableHttpResponse response = null;
        String resultString = "";
        try {
-           // 创建Http Post请求
+           // Create Http Post request
            HttpPost httpPost = new HttpPost(url);
-           // 设置头部信息
+           // Set header information
            httpPost.setHeader("timeStamp",String.valueOf(SignUtils.getCurrentTimestamp()));
            httpPost.setHeader("keyStr",keyStr);
            httpPost.setHeader("sign",sign);
-           // 创建请求内容
+           // Create request content
            StringEntity entity = new StringEntity(json, ContentType.APPLICATION_JSON);
            httpPost.setEntity(entity);
-           // 执行http请求
+           // Execute http request
            response = httpClient.execute(httpPost);
            resultString = EntityUtils.toString(response.getEntity(), CODE_FORMAT);
        } catch (Exception e) {

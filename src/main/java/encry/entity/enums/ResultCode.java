@@ -20,15 +20,12 @@ import java.util.Objects;
  */
 public enum ResultCode {
 
-    PARAMTER_ERROR("09501", "参数校验错误"),
-    GET_CHAIN_ADDR_ERROR("09502", "从链服务获取地址失败"),
-    // OpenApi code 02000-02999  - 以及open http错误代码
+    PARAMTER_ERROR("09501", "Check error"),
+    GET_CHAIN_ADDR_ERROR("09502", "Failed to get address from chain service"),
     OPEN_LIMIT("429", "Too Many Requests"),
     OPEN_FAIL("500", "Server Error"),
     OPEN_NOT_DATA("02001", "NO Date"),
 
-    OPEN_SIX_NULL("02002", "number参数缺少"),
-    OPEN_SIX_INT("02003", "number参数格式有误"),
     OPEN_TIME_NULL("02004", "timeStamp Parameter is missing"),
     OPEN_KEY_NULL("02005", "keyStr Parameter is missing"),
     OPEN_KEY_UUID("02006", "keyStr parameter binding key does not exist"),

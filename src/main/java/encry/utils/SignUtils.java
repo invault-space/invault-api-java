@@ -16,13 +16,13 @@ import java.security.spec.X509EncodedKeySpec;
  */
 public class SignUtils {
 
-    //加密算法
+    //Encryption Algorithm
     private static final String SHA256WithRSA = "SHA256WithRSA";
 
     private static final String RSA = "RSA";
 
     /**
-     * SHA256加密
+     * SHA256 encryption
      * @param str
      * @return
      */
@@ -42,7 +42,7 @@ public class SignUtils {
     }
 
     /**
-     * 获取当前时间戳，单位毫秒
+     * Get the current timestamp, in milliseconds
      * @return
      */
     public static long getCurrentTimestamp() {
@@ -50,26 +50,27 @@ public class SignUtils {
     }
 
     /**
-     * 使用私钥给入参签名
-     * @param privateKey 私钥
-     * @param param      签名的数据
-     * @return            返回入参签名16进制字符串
+     * Use the private key to sign the incoming parameters
+     * @param privateKey Private key
+     * @param param      Signed data
+     * @return
+     * Return the input parameter signature hexadecimal string
      * */
     public static String sign(String privateKey, String param) {
         try {
-            //获取privatekey
+            //Get privatekey
             byte[] privateKeyByte = new org.apache.commons.codec.binary.Base64().decode(privateKey);
             KeyFactory keyfactory = KeyFactory.getInstance(RSA);
             PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(privateKeyByte);
             PrivateKey key = keyfactory.generatePrivate(pkcs8EncodedKeySpec);
 
-            //用私钥给入参加签
+            //Sign in with the private key
             Signature sign = Signature.getInstance(SHA256WithRSA);
             sign.initSign(key);
             sign.update(param.getBytes());
 
             byte[] signature = sign.sign();
-            //将签名的入参转换成16进制字符串
+            //Convert signed input parameters into hexadecimal string
             return bytesToHexStr(signature);
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,29 +79,29 @@ public class SignUtils {
     }
 
     /**
-     * 用公钥验证签名
-     * @param param       入参
-     * @param signature   使用私钥签名的入参字符串
-     * @param publicKey   公钥
-     * @return             返回验证结果
+     * Verify signature with public key
+     * @param param       Participate
+     * @param signature   Input parameter string signed with private key
+     * @param publicKey   Public key
+     * @return             Return verification result
      * */
 
     public static boolean verifySign(String param,String signature,String publicKey){
         try {
-            //获取公钥
+            //Get public key
             KeyFactory keyFactory = KeyFactory.getInstance(RSA);
             byte[] publicKeyByte = new Base64().decode(publicKey);
             X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(publicKeyByte);
             PublicKey key= keyFactory.generatePublic(x509EncodedKeySpec);
 
-            //用获取到的公钥对   入参中未加签参数param 与 入参中的加签之后的参数signature进行验签
+            //Use the obtained public key to verify the unsigned parameter param in the input parameter and the signed parameter signature in the input parameter
             Signature sign=Signature.getInstance(SHA256WithRSA);
             sign.initVerify(key);
             sign.update(param.getBytes());
 
-            //将16进制码转成字符数组
+            //Convert hexadecimal code to character array
             byte[] hexByte = hexStrToBytes(signature);
-            //验证签名
+            //Verify signature
             return sign.verify(hexByte);
 
         }  catch (Exception e) {
@@ -110,9 +111,10 @@ public class SignUtils {
     }
 
     /**
-     * byte数组转换成十六进制字符串
-     * @param bytes byte数组
-     * @return      返回十六进制字符串
+     * Convert byte array to hexadecimal string
+     * @param bytes byte array
+     * @return
+     * Returns a hexadecimal string
      */
     private static String bytesToHexStr(byte[] bytes) {
         StringBuffer stringBuffer = new StringBuffer("");
@@ -123,9 +125,10 @@ public class SignUtils {
     }
 
     /**
-     * 十六进制字符串转成byte数组
-     * @param hexStr   十六进制字符串
-     * @return          返回byte数组
+     *
+     * Convert hexadecimal string to byte array
+     * @param hexStr   Hexadecimal string
+     * @return          Return byte array
      * */
     private static byte[] hexStrToBytes(String hexStr) {
         byte[] bytes = new byte[hexStr.length() / 2];

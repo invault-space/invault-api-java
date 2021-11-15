@@ -12,7 +12,7 @@ import encry.entity.vo.*;
  */
 public interface AddressService {
     /**
-     * 查询币种地址总表
+     * Query the currency address summary table
      * @param openEntity
      * @param coinCodePageVo
      * @return
@@ -20,7 +20,8 @@ public interface AddressService {
     OpenResult queryAddressesByCoinCode(OpenEntity openEntity, CoinCodePageVo coinCodePageVo );
 
     /**
-     * 批量校验地址信息
+     *
+     * Batch verification of address information
      * @param openEntity
      * @param verifyAddressBatchVo
      * @return
@@ -29,7 +30,7 @@ public interface AddressService {
 
 
     /**
-     * 验证地址合法性
+     * Verify address legitimacy
      * @param openEntity
      * @param verifyAddressVo
      * @return
@@ -38,14 +39,12 @@ public interface AddressService {
 
 
     /**
-     * 获取充值地址
+     *
+     * Get the top-up address
      * @param openEntity
      * @param depositAddressVo
      * @return
      */
     OpenResult getDepositAddress(OpenEntity openEntity,  DepositAddressVo depositAddressVo);
-
-
-
 
 }

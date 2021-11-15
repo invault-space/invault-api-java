@@ -12,7 +12,7 @@ import encry.entity.vo.*;
  */
 public interface TradeService {
     /**
-     * 发起提币申请
+     * Initiate a withdrawal application
      * @param openEntity
      * @param withdrawApplyVo
      * @return
@@ -20,7 +20,8 @@ public interface TradeService {
     OpenResult withdrawApply(OpenEntity openEntity, WithdrawApplyVo withdrawApplyVo );
 
     /**
-     * 根据请求订单号获取提币交易详情(queryByReqOrderId)
+     *
+     * Get the details of the withdrawal transaction according to the requested order number(queryByReqOrderId)
      * @param openEntity
      * @param qryByReqOrderIdVo
      * @return
@@ -29,7 +30,7 @@ public interface TradeService {
 
 
     /**
-     * 通过时间查询获取已确认交易记录列表
+     * Get a list of confirmed transaction records through time query
      * @param openEntity
      * @param qryTradeListByDateVo
      * @return
@@ -37,7 +38,7 @@ public interface TradeService {
     OpenResult transactions(OpenEntity openEntity, QryTradeListByDateVo qryTradeListByDateVo );
 
     /**
-     * 根据订单号获取已确认交易详情
+     * Get confirmed transaction details based on the order number
      * @param openEntity
      * @param qryTradeByOrderNoVo
      * @return
@@ -46,7 +47,7 @@ public interface TradeService {
 
 
     /**
-     * 通过时间查询获取确认中交易记录
+     * Obtain confirmation transaction records through time query
      * @param openEntity
      * @param qryTradeListByDateVo
      * @return
@@ -55,7 +56,7 @@ public interface TradeService {
 
 
     /**
-     * 根据id获取确认中的交易详情(pendingTransactionById)
+     * Get the transaction details in confirmation according to id(pendingTransactionById)
      * @param openEntity
      * @param qryTradeById
      * @return
@@ -65,7 +66,7 @@ public interface TradeService {
 
 
     /**
-     * 获取交易区块高度(blockHeight)
+     * Get the height of the transaction block(blockHeight)
      * @param openEntity
      * @param blockHeightVo
      * @return
@@ -73,7 +74,7 @@ public interface TradeService {
     OpenResult blockHeight(OpenEntity openEntity,  BlockHeightVo blockHeightVo);
 
     /**
-     * 通过txHash 查询交易(transactionByTxHash)
+     * Query transactions through txHash(transactionByTxHash)
      * @param openEntity
      * @param Qvo
      * @return
@@ -81,7 +82,8 @@ public interface TradeService {
     OpenResult transactionByTxHash(OpenEntity openEntity, TradeByTxHashVo Qvo);
 
     /**
-     * 通过BlockHeight查询交易(transactionByBlockHeight)
+     *
+     * Query transactions through BlockHeight(transactionByBlockHeight)
      * @param openEntity
      * @param Qvo
      * @return
