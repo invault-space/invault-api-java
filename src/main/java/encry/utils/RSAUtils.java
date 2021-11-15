@@ -162,7 +162,7 @@ public class RSAUtils {
    }
 
    /**
-    * 分段加解密
+    * Segment encryption and decryption
     *
     * @param data     Segment encryption and decryption
     * @param cipher   Encryption and decryption objects
