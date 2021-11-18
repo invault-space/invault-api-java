@@ -44,7 +44,7 @@ public class QueryAssetServiceImpl implements QueryAssetService {
     @Override
     public OpenResult queryAssetByCode(OpenEntity openEntity, AssetCodeVo assetCodeVo) {
         if(Objects.isNull(assetCodeVo) || StringUtils.isBlank(assetCodeVo.getAssetCode())){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
 
         RPCResult rpcResult = RPCResult.placeDate("queryAssetByCode",assetCodeVo);
@@ -82,7 +82,7 @@ public class QueryAssetServiceImpl implements QueryAssetService {
     @Override
     public OpenResult queryCoinByCode(OpenEntity openEntity, CoinCodeVo coinCodeVo) {
         if(Objects.isNull(coinCodeVo) || StringUtils.isBlank(coinCodeVo.getCoinCode())){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("queryCoinByCode",coinCodeVo);
         String data = JSON.toJSONString(rpcResult);

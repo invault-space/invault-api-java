@@ -31,7 +31,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public OpenResult queryAddressesByCoinCode(OpenEntity openEntity, CoinCodePageVo coinCodePageVo) {
         if(Objects.isNull(coinCodePageVo) || StringUtils.isBlank(coinCodePageVo.getCoinCode())){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("queryAddressesByCoinCode",coinCodePageVo);
         String data = JSON.toJSONString(rpcResult);
@@ -52,7 +52,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public OpenResult queryAddressesInfo(OpenEntity openEntity, VerifyAddressBatchVo verifyAddressBatchVo) {
         if(Objects.isNull(verifyAddressBatchVo) || Objects.isNull(verifyAddressBatchVo.getAddressList())|| StringUtils.isBlank(verifyAddressBatchVo.getCoinCode()) ){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("queryAddressesInfo",verifyAddressBatchVo);
         String data = JSON.toJSONString(rpcResult);
@@ -71,7 +71,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public OpenResult checkAddress(OpenEntity openEntity, VerifyAddressVo verifyAddressVo) {
         if(Objects.isNull(verifyAddressVo) || StringUtils.isAnyBlank(verifyAddressVo.getCoinCode(),verifyAddressVo.getAddress()) ){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("checkAddress",verifyAddressVo);
         String data = JSON.toJSONString(rpcResult);
@@ -90,7 +90,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public OpenResult getDepositAddress(OpenEntity openEntity, DepositAddressVo depositAddressVo ) {
         if(Objects.isNull(depositAddressVo) || StringUtils.isAnyBlank(depositAddressVo.getCoinCode())  ){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("getDepositAddress",depositAddressVo);
         String data = JSON.toJSONString(rpcResult);

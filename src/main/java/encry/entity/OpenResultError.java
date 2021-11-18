@@ -23,7 +23,9 @@ public class OpenResultError<T> implements Serializable {
         this.message = message;
     }
 
-    public OpenResultError(ResultCode openAssetCode) {
+    public OpenResultError(ResultCode result) {
+        this.code = result.getCode();
+        this.message = result.getMessage();
     }
 
     public String getCode() {

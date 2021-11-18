@@ -33,7 +33,7 @@ public class TradeServiceImpl implements TradeService {
     public OpenResult withdrawApply(OpenEntity openEntity, WithdrawApplyVo withdrawApplyVo) {
         if(Objects.isNull(withdrawApplyVo) || StringUtils.isAnyBlank(withdrawApplyVo.getCoinCode(),withdrawApplyVo.getRequestOrderId(),
                 withdrawApplyVo.getAddress() ,withdrawApplyVo.getAmount()) || Objects.isNull(withdrawApplyVo.getTimestamp()) ){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("withdrawApply",withdrawApplyVo);
         String data = JSON.toJSONString(rpcResult);
@@ -53,7 +53,7 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public OpenResult queryByReqOrderId(OpenEntity openEntity, QryByReqOrderIdVo qryByReqOrderIdVo) {
         if(Objects.isNull(qryByReqOrderIdVo) || StringUtils.isAnyBlank(qryByReqOrderIdVo.getReqOrderId()) ){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("queryByReqOrderId",qryByReqOrderIdVo);
         String data = JSON.toJSONString(rpcResult);
@@ -73,7 +73,7 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public OpenResult transactions(OpenEntity openEntity, QryTradeListByDateVo qryTradeListByDateVo) {
         if(Objects.isNull(qryTradeListByDateVo) || StringUtils.isAnyBlank(qryTradeListByDateVo.getOrderType()) ){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("transactions",qryTradeListByDateVo);
         String data = JSON.toJSONString(rpcResult);
@@ -92,7 +92,7 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public OpenResult transactionById(OpenEntity openEntity, QryTradeByOrderNoVo qryTradeByOrderNoVo) {
         if(Objects.isNull(qryTradeByOrderNoVo) || StringUtils.isAnyBlank(qryTradeByOrderNoVo.getOrderType(),qryTradeByOrderNoVo.getCustodyOrderId() ) ){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("transactionById",qryTradeByOrderNoVo);
         String data = JSON.toJSONString(rpcResult);
@@ -111,7 +111,7 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public OpenResult pendingTransactions(OpenEntity openEntity, QryTradeListByDateVo qryTradeListByDateVo) {
         if(Objects.isNull(qryTradeListByDateVo) || StringUtils.isAnyBlank(qryTradeListByDateVo.getOrderType())){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("pendingTransactions",qryTradeListByDateVo);
         String data = JSON.toJSONString(rpcResult);
@@ -130,7 +130,7 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public OpenResult pendingTransactionById(OpenEntity openEntity, QryTradeByOrderNoVo qryTradeById) {
         if(Objects.isNull(qryTradeById) || StringUtils.isAnyBlank(qryTradeById.getOrderType(),qryTradeById.getCustodyOrderId())){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("pendingTransactionById",qryTradeById);
         String data = JSON.toJSONString(rpcResult);
@@ -165,7 +165,7 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public OpenResult transactionByTxHash(OpenEntity openEntity, TradeByTxHashVo Qvo) {
         if(Objects.isNull(Qvo) || StringUtils.isAnyBlank(Qvo.getTxHash(),Qvo.getCoinCode())){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("transactionByTxHash",Qvo);
         String data = JSON.toJSONString(rpcResult);
@@ -184,7 +184,7 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public OpenResult transactionByBlockHeight(OpenEntity openEntity, TradeByBlockHeightVo Qvo) {
         if(Objects.isNull(Qvo) || StringUtils.isAnyBlank(Qvo.getBlockHeight(),Qvo.getCoinCode())){
-            return OpenResult.newError(new OpenResultError(ResultCode.PARAMTER_ERROR));
+            return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("transactionByBlockHeight",Qvo);
         String data = JSON.toJSONString(rpcResult);
@@ -194,5 +194,4 @@ public class TradeServiceImpl implements TradeService {
     }
 
 
-    //todo param valid
 }
