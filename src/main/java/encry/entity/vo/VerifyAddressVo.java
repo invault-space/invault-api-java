@@ -9,8 +9,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class VerifyAddressVo {
 
+    /**
+     * coin code
+     */
     private String coinCode;
+    /**
+     * address
+     */
     private String address;
+    /**
+     * memo
+     */
     private String memo;
 
 }

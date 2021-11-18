@@ -8,12 +8,18 @@ import lombok.NoArgsConstructor;
  * @author ZC
  * @Title:
  * @Description:
- * @date 2021/9/142:53 下午
+ * @date 2021/11/14 2:53 下午
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Address {
+    /**
+     * address
+     */
     private String address;
+    /**
+     * memo
+     */
     private String memo;
 }

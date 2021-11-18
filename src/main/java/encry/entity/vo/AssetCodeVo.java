@@ -7,12 +7,15 @@ import lombok.NoArgsConstructor;
 /**
  * @author hy-210531
  * @Classname AssetCodeVo
- * @Date 2021/9/6 11:26
+ * @Date 2021/11/6 11:26
  * @Description
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AssetCodeVo {
+    /**
+     * asset code
+     */
     private String assetCode;
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @Classname OpenResult
- * @Date 2021/9/3 16:41
+ * @Date 2021/11/3 16:41
  * @Created by chenrujia
  * @Description
  */

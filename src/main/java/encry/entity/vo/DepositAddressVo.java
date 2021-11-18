@@ -8,8 +8,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DepositAddressVo {
-
+    /**
+     * coin code
+     */
     private String coinCode;
-
+    /**
+     *limit number
+     */
     private int limit;
 }

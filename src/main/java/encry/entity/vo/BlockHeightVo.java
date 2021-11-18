@@ -15,5 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BlockHeightVo {
+    /**
+     * chain coin
+     */
     private String chainCoin;
 }

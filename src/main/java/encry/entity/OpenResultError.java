@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @Classname OpenResultError
- * @Date 2021/9/3 18:18
+ * @Date 2021/11/3 18:18
  * @Created by chenrujia
  * @Description
  */

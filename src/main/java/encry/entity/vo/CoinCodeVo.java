@@ -7,12 +7,15 @@ import lombok.NoArgsConstructor;
 /**
  * @author zc
  * @Classname AssetCodeVo
- * @Date 2021/9/6 11:26
+ * @Date 2021/11/6 11:26
  * @Description
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class CoinCodeVo {
+    /**
+     * coin code
+     */
     private String coinCode;
 }
