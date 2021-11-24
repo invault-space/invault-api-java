@@ -29,13 +29,12 @@ public class ApplyDemo {
     public static void main(String[] args) {
         // DemoMessage Parameter entity
         DemoMessage message = new DemoMessage();
-        message.setAddress("shanghai");
-        message.setName("xiaoming");
         message.setAge(18);
+        message.setName("xiaoming");
+        message.setAddress("shanghai");
 
         RPCResult rpcResult = RPCResult.placeDate("queryAssets",message);
-        TreeMap<String, Object> objectMap = JSON.parseObject(JSONObject.toJSONString(rpcResult), new TypeReference<TreeMap<String, Object>>() {});
-        String data = JSONObject.toJSONString(objectMap);
+        String data = SignUtils.JsonSort(rpcResult);
 
         System.out.println("header~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         Long timeStamp = SignUtils.getCurrentTimestamp();

@@ -1,5 +1,9 @@
 package encry.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import encry.entity.RPCResult;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
 
@@ -7,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.TreeMap;
 
 /**
  * @Classname SignUtils
@@ -136,5 +141,15 @@ public class SignUtils {
             bytes[i] = (byte) Integer.parseInt(hexStr.substring(2 * i, 2 * i + 2), 16);
         }
         return bytes;
+    }
+
+    /**
+     * sort
+     * @param rpcResult
+     * @return
+     */
+    public static String JsonSort(RPCResult rpcResult) {
+        TreeMap<String, Object> objectMap = JSON.parseObject(JSONObject.toJSONString(rpcResult), new TypeReference<TreeMap<String, Object>>() {});
+        return JSONObject.toJSONString(objectMap);
     }
 }
