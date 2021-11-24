@@ -1,9 +1,13 @@
 package encry;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import encry.entity.DemoMessage;
 import encry.entity.RPCResult;
 import encry.utils.SignUtils;
+
+import java.util.TreeMap;
 
 /**
  * @Classname ApplyDemo
@@ -25,13 +29,13 @@ public class ApplyDemo {
     public static void main(String[] args) {
         // DemoMessage Parameter entity
         DemoMessage message = new DemoMessage();
+        message.setAddress("shanghai");
         message.setName("xiaoming");
         message.setAge(18);
-        message.setAddress("shanghai");
 
         RPCResult rpcResult = RPCResult.placeDate("queryAssets",message);
-
-        String data = JSON.toJSONString(rpcResult);
+        TreeMap<String, Object> objectMap = JSON.parseObject(JSONObject.toJSONString(rpcResult), new TypeReference<TreeMap<String, Object>>() {});
+        String data = JSONObject.toJSONString(objectMap);
 
         System.out.println("header~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         Long timeStamp = SignUtils.getCurrentTimestamp();
