@@ -34,7 +34,7 @@ public class AddressServiceImpl implements AddressService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("queryAddressesByCoinCode",coinCodePageVo);
-        String data = SignUtils.JsonSort(rpcResult);
+        String data = SignUtils.jsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -55,7 +55,7 @@ public class AddressServiceImpl implements AddressService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("queryAddressesInfo",verifyAddressBatchVo);
-        String data = SignUtils.JsonSort(rpcResult);
+        String data = SignUtils.jsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -74,7 +74,7 @@ public class AddressServiceImpl implements AddressService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("checkAddress",verifyAddressVo);
-        String data = SignUtils.JsonSort(rpcResult);
+        String data = SignUtils.jsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -93,7 +93,7 @@ public class AddressServiceImpl implements AddressService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("getDepositAddress",depositAddressVo);
-        String data = SignUtils.JsonSort(rpcResult);
+        String data = SignUtils.jsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);

@@ -28,7 +28,7 @@ public class QueryAssetServiceImpl implements QueryAssetService {
     @Override
     public OpenResult queryAssets(OpenEntity entity) {
         RPCResult rpcResult = RPCResult.placeDate("queryAssets",null);
-        String data = SignUtils.JsonSort(rpcResult);
+        String data = SignUtils.jsonSort(rpcResult);
         String sign = SignUtils.sign(entity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(entity.getKeyStr(),sign,entity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -48,7 +48,7 @@ public class QueryAssetServiceImpl implements QueryAssetService {
         }
 
         RPCResult rpcResult = RPCResult.placeDate("queryAssetByCode",assetCodeVo);
-        String data = SignUtils.JsonSort(rpcResult);
+        String data = SignUtils.jsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -65,7 +65,7 @@ public class QueryAssetServiceImpl implements QueryAssetService {
     @Override
     public OpenResult queryCoins(OpenEntity openEntity) {
         RPCResult rpcResult = RPCResult.placeDate("queryCoins",null);
-        String data = SignUtils.JsonSort(rpcResult);
+        String data = SignUtils.jsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -85,7 +85,7 @@ public class QueryAssetServiceImpl implements QueryAssetService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("queryCoinByCode",coinCodeVo);
-        String data = SignUtils.JsonSort(rpcResult);
+        String data = SignUtils.jsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);

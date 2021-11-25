@@ -34,7 +34,7 @@ public class ApplyDemo {
         message.setAddress("shanghai");
 
         RPCResult rpcResult = RPCResult.placeDate("queryAssets",message);
-        String data = SignUtils.JsonSort(rpcResult);
+        String data = SignUtils.jsonSort(rpcResult);
 
         System.out.println("header~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         Long timeStamp = SignUtils.getCurrentTimestamp();

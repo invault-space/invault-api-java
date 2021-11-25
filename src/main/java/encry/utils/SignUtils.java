@@ -148,7 +148,7 @@ public class SignUtils {
      * @param rpcResult
      * @return
      */
-    public static String JsonSort(RPCResult rpcResult) {
+    public static String jsonSort(RPCResult rpcResult) {
         TreeMap<String, Object> objectMap = JSON.parseObject(JSONObject.toJSONString(rpcResult), new TypeReference<TreeMap<String, Object>>() {});
         return JSONObject.toJSONString(objectMap);
     }
