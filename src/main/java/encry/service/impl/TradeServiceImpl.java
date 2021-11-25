@@ -36,7 +36,7 @@ public class TradeServiceImpl implements TradeService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("withdrawApply",withdrawApplyVo);
-        String data = JSON.toJSONString(rpcResult);
+        String data = SignUtils.JsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -56,7 +56,7 @@ public class TradeServiceImpl implements TradeService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("queryByReqOrderId",qryByReqOrderIdVo);
-        String data = JSON.toJSONString(rpcResult);
+        String data = SignUtils.JsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -76,7 +76,7 @@ public class TradeServiceImpl implements TradeService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("transactions",qryTradeListByDateVo);
-        String data = JSON.toJSONString(rpcResult);
+        String data = SignUtils.JsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -95,7 +95,7 @@ public class TradeServiceImpl implements TradeService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("transactionById",qryTradeByOrderNoVo);
-        String data = JSON.toJSONString(rpcResult);
+        String data = SignUtils.JsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -114,7 +114,7 @@ public class TradeServiceImpl implements TradeService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("pendingTransactions",qryTradeListByDateVo);
-        String data = JSON.toJSONString(rpcResult);
+        String data = SignUtils.JsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -133,7 +133,7 @@ public class TradeServiceImpl implements TradeService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("pendingTransactionById",qryTradeById);
-        String data = JSON.toJSONString(rpcResult);
+        String data = SignUtils.JsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -149,7 +149,7 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public OpenResult blockHeight(OpenEntity openEntity, BlockHeightVo blockHeightVo) {
         RPCResult rpcResult = RPCResult.placeDate("blockHeight",blockHeightVo);
-        String data = JSON.toJSONString(rpcResult);
+        String data = SignUtils.JsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -168,7 +168,7 @@ public class TradeServiceImpl implements TradeService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("transactionByTxHash",Qvo);
-        String data = JSON.toJSONString(rpcResult);
+        String data = SignUtils.JsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
@@ -187,7 +187,7 @@ public class TradeServiceImpl implements TradeService {
             return OpenResult.newError(new OpenResultError(ResultCode.OPEN_PARAM_IS_NULL));
         }
         RPCResult rpcResult = RPCResult.placeDate("transactionByBlockHeight",Qvo);
-        String data = JSON.toJSONString(rpcResult);
+        String data = SignUtils.JsonSort(rpcResult);
         String sign = SignUtils.sign(openEntity.getPrivateKey(),data);
         String context = HttpClientUtil.doPostJson(openEntity.getKeyStr(),sign,openEntity.getURL(),data);
         return JSON.parseObject(context,OpenResult.class);
